@@ -18,6 +18,8 @@ class Setup:
                 y = r_index * 50
                 if column == 'x':
                     Rock((x, y), [self.visible_sprites])
+                if column == 'p':
+                    Player((x, y), [self.visible_sprites])
 
 
     def run(self):
