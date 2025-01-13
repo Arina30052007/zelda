@@ -9,3 +9,4 @@ class Rock(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (60, 60))
         self.image.convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
+        self.hitbox = self.rect.inflate(0, -10)
