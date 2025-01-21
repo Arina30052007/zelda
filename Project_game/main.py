@@ -1,6 +1,7 @@
 import pygame, sys
 from level import Setup
 from settings import *
+from sword import Stars
 
 class Game:
     def __init__(self):
@@ -8,7 +9,7 @@ class Game:
         self.screen = pygame.display.set_mode((1000, 600))
         pygame.display.set_caption("Zelda")
         self.clock = pygame.time.Clock()
-        self.level = Setup()
+        self.level = Setup(WORLD_MAP)
 
 
     def run(self):
@@ -17,7 +18,10 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-            self.screen.fill('black')
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    for bomb in self.z:
+                        self.z.Stars.update(event)
+            self.screen.fill('#1E5945')
             self.level.run()
             pygame.display.update()
             self.clock.tick(50)
