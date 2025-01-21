@@ -8,8 +8,8 @@ from debug import debug
 from sword import Sword, Stars
 
 class Setup:
-    def __init__(self, a):
-        self.world = a
+    def __init__(self):
+        self.world = WORLD_MAP
         self.display_surface = pygame.display.get_surface()
         self.visible_sprites =  CameraGroup()
         self.obstacles_sprites = pygame.sprite.Group()
