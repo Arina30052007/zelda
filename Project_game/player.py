@@ -4,7 +4,7 @@ from Project_game.settings import WORLD_MAP2
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, obstacle_sprites, m):
+    def __init__(self, pos, groups, obstacle_sprites, m, z):
         super().__init__(groups)
         self.image = pygame.image.load('data\\player1,1_processed.png')
         self.image = pygame.transform.scale(self.image, (60, 60))
@@ -16,6 +16,8 @@ class Player(pygame.sprite.Sprite):
         self.v = 5
         self.obstacle_sprites = obstacle_sprites
         self.m = m
+        self.z = z
+        self.coin = 0
 
 
 
@@ -65,9 +67,10 @@ class Player(pygame.sprite.Sprite):
         for sprite in self.m:
             if sprite.hitbox.colliderect(self.hitbox):
                 print('1')
-
-
-
+        for star in self.z:
+            if star.hitbox.colliderect(self.hitbox):
+                self.coin += 1
+                star.kill()
 
 
 
@@ -75,3 +78,4 @@ class Player(pygame.sprite.Sprite):
         self.keyboard()
         self.go(self.v)
         self.col()
+

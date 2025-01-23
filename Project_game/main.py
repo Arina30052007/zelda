@@ -13,6 +13,7 @@ from level import Setup
 from settings import *
 from sword import Stars
 
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -21,6 +22,8 @@ class Game:
         self.clock = pygame.time.Clock()
         self.level = Setup()
         self.start_screen()
+
+
     def terminate(self):
         pygame.quit()
         sys.exit()
@@ -61,9 +64,7 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    for bomb in self.z:
-                        self.z.Stars.update(event)
+
             self.screen.fill('#1E5945')
             self.level.run()
             pygame.display.update()

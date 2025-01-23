@@ -28,7 +28,7 @@ class Setup:
                 if column == 'm':
                     self.sword = Sword((x, y), [self.m, self.visible_sprites,])
                 if column == 'p':
-                    self.player = Player((x, y), [self.visible_sprites], self.obstacles_sprites, self.m)
+                    self.player = Player((x, y), [self.visible_sprites], self.obstacles_sprites, self.m, self.z)
                 if column == 'z':
                     self.star = Stars((x, y), [self.z, self.visible_sprites], self.z)
 

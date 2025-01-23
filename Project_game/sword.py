@@ -30,10 +30,12 @@ class Stars(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -10)
 
+
     def update(self, *args):
         if args and args[0].type == pygame.MOUSEBUTTONDOWN and \
                 self.rect.collidepoint(args[0].pos):
             self.image = self.image_1
+
 
 class Grass(pygame.sprite.Sprite):
     def __init__(self, pos, groups):
