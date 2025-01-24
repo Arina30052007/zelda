@@ -1,10 +1,7 @@
 import pygame
-from settings import *
-from Project_game.settings import WORLD_MAP2
-from main2 import Game2
 
-class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, obstacle_sprites, m, z):
+class Player2(pygame.sprite.Sprite):
+    def __init__(self, pos, groups, obstacle_sprites, z):
         super().__init__(groups)
         self.image = pygame.image.load('data\\player1,1_processed.png')
         self.image = pygame.transform.scale(self.image, (60, 60))
@@ -15,7 +12,6 @@ class Player(pygame.sprite.Sprite):
         self.movement = pygame.math.Vector2()
         self.v = 5
         self.obstacle_sprites = obstacle_sprites
-        self.m = m
         self.z = z
         self.coin = 0
 
@@ -64,9 +60,6 @@ class Player(pygame.sprite.Sprite):
                         self.hitbox.top = sprite.hitbox.bottom
 
     def col(self):
-        for sprite in self.m:
-            if sprite.hitbox.colliderect(self.hitbox):
-                Game2()
         for star in self.z:
             if star.hitbox.colliderect(self.hitbox):
                 self.coin += 1

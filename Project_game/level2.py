@@ -1,21 +1,17 @@
 import pygame
 
-from Project_game.settings import WORLD_MAP, WORLD_MAP2
-from Project_game.sword import Stars
-from rock import Rock
-from player import Player
+from Project_game.settings import WORLD_MAP2
+from player2 import Player2
 from debug import debug
-from sword import Sword, Stars
+from others import Stars2, Rock2
 
-class Setup:
+class Setup2:
     def __init__(self):
-        self.world = WORLD_MAP
+        self.world = WORLD_MAP2
         self.display_surface = pygame.display.get_surface()
         self.visible_sprites =  CameraGroup()
         self.obstacles_sprites = pygame.sprite.Group()
-        self.m = pygame.sprite.Group()
         self.z = pygame.sprite.Group()
-        self.g = pygame.sprite.Group()
         self.place()
 
     def place(self):
@@ -24,13 +20,11 @@ class Setup:
                 x = c_index * 60
                 y = r_index * 60
                 if column == 'x':
-                    Rock((x, y), [self.visible_sprites, self.obstacles_sprites])
-                if column == 'm':
-                    self.sword = Sword((x, y), [self.m, self.visible_sprites,])
+                    Rock2((x, y), [self.visible_sprites, self.obstacles_sprites])
                 if column == 'p':
-                    self.player = Player((x, y), [self.visible_sprites], self.obstacles_sprites, self.m, self.z)
+                    self.player = Player2((x, y), [self.visible_sprites], self.obstacles_sprites, self.z)
                 if column == 'z':
-                    self.star = Stars((x, y), [self.z, self.visible_sprites], self.z)
+                    self.star = Stars2((x, y), [self.z, self.visible_sprites], self.z)
 
 
     def run(self):
