@@ -14,6 +14,9 @@ class Player(pygame.sprite.Sprite):
         self.pos = pos
         self.movement = pygame.math.Vector2()
         self.v = 5
+        self.attacking = False
+        self.attack_cooldown = 400
+        self.attack_time = None
         self.obstacle_sprites = obstacle_sprites
         self.m = m
         self.z = z
@@ -35,6 +38,12 @@ class Player(pygame.sprite.Sprite):
             self.movement.x = -1
         else:
             self.movement.x = 0
+        #attack
+        if keys[pygame.K_SPACE] and not self.attacking:
+            self.attacking = True
+            self.attack_time = pygame.time.get_ticks()
+            print('attack')
+
 
     def go(self, v):
         if self.movement.magnitude() != 0:
@@ -72,9 +81,14 @@ class Player(pygame.sprite.Sprite):
                 self.coin += 1
                 star.kill()
 
-
+    def cooldowns(self):
+        current_time = pygame.time.get_ticks()
+        if self.attacking:
+            if current_time - self.attack_time >= self.attack_cooldown:
+                self.attacking = False
 
     def update(self):
         self.keyboard()
+        self.cooldowns()
         self.go(self.v)
         self.col()
