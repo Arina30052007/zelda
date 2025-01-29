@@ -21,21 +21,30 @@ class Player(pygame.sprite.Sprite):
         self.m = m
         self.z = z
         self.coin = 0
+        self.import_player_assets()
+        self.status = 'down'
 
-
+    def import_player_assets(self):
+        character_path = '/data/player1,1_processed.png'
+        self.animations = {'up': [], 'down': [], 'left': [], 'right': [],
+                           'right_attack': [], 'left_attack': [], 'up_attack': [], 'down_attack': []}
 
     def keyboard(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
             self.movement.y = -1
+            self.status = 'up'
         elif keys[pygame.K_DOWN]:
             self.movement.y = 1
+            self.status = 'down'
         else:
             self.movement.y = 0
         if keys[pygame.K_RIGHT]:
             self.movement.x = 1
+            self.status = 'right'
         elif keys[pygame.K_LEFT]:
             self.movement.x = -1
+            self.status = 'left'
         else:
             self.movement.x = 0
         #attack
@@ -43,6 +52,22 @@ class Player(pygame.sprite.Sprite):
             self.attacking = True
             self.attack_time = pygame.time.get_ticks()
             print('attack')
+
+    def get_status(self):
+        if self.movement.x == 0 and self.movement.y == 0:
+            if not 'idle' in self.status and not 'attack' in self.status:
+                self.status = self.status + '_idle'
+        if self.attacking:
+            self.movement.x = 0
+            self.movement.y = 0
+            if not 'attack' in self.status:
+                if 'idle' in self.status:
+                    self.status = self.status.replace('_idle', '_attack')
+                else:
+                    self.status = self.status + '_attack'
+        else:
+            if 'attack' in self.status:
+                self.status = self.status.replace('_attack', '')
 
 
     def go(self, v):
@@ -90,5 +115,6 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.keyboard()
         self.cooldowns()
+        self.get_status()
         self.go(self.v)
         self.col()
