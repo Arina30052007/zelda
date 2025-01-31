@@ -6,7 +6,7 @@ from main2 import Game2
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, obstacle_sprites, m, z):
         super().__init__(groups)
-        self.image = pygame.image.load('data\\player1,1_processed.png')
+        self.image = pygame.image.load('data\\char.jpg')
         self.image = pygame.transform.scale(self.image, (60, 60))
         self.image.convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
@@ -28,13 +28,93 @@ class Player(pygame.sprite.Sprite):
 
     def import_player_assets(self):
         character_path = '/data/player1,1_processed.png'
-        p = pygame.image.load('data\\player1,1_processed.png')
+        p = pygame.image.load('data\\char.png')
         p = pygame.transform.scale(p, (60, 60))
+        p1 = pygame.image.load('data\\d1.png')
+        p1 = pygame.transform.scale(p1, (60, 60))
+        p2 = pygame.image.load('data\\d2.png')
+        p2 = pygame.transform.scale(p2, (60, 60))
+        p3 = pygame.image.load('data\\d3.png')
+        p3 = pygame.transform.scale(p3, (60, 60))
+        p4 = pygame.image.load('data\\d4.png')
+        p4 = pygame.transform.scale(p4, (60, 60))
+        p5 = pygame.image.load('data\\d5.png')
+        p5 = pygame.transform.scale(p5, (60, 60))
+        p6 = pygame.image.load('data\\d6.png')
+        p6 = pygame.transform.scale(p6, (60, 60))
+        p7 = pygame.image.load('data\\d7.png')
+        p7 = pygame.transform.scale(p7, (60, 60))
+        p8 = pygame.image.load('data\\d8.png')
+        p8 = pygame.transform.scale(p8, (60, 60))
+        p9 = pygame.image.load('data\\d9.png')
+        p9 = pygame.transform.scale(p9, (60, 60))
+        b1 = pygame.image.load('data\\b1.png')
+        b1 = pygame.transform.scale(b1, (60, 60))
+        b2 = pygame.image.load('data\\b2.png')
+        b2 = pygame.transform.scale(b2, (60, 60))
+        b3 = pygame.image.load('data\\b3.png')
+        b3 = pygame.transform.scale(b3, (60, 60))
+        b4 = pygame.image.load('data\\b4.png')
+        b4 = pygame.transform.scale(b4, (60, 60))
+        b5 = pygame.image.load('data\\b5.png')
+        b5 = pygame.transform.scale(b5, (60, 60))
+        b6 = pygame.image.load('data\\b6.png')
+        b6 = pygame.transform.scale(b6, (60, 60))
+        b7 = pygame.image.load('data\\b7.png')
+        b7 = pygame.transform.scale(b7, (60, 60))
+        b8 = pygame.image.load('data\\b8.png')
+        b8 = pygame.transform.scale(b8, (60, 60))
+        b9 = pygame.image.load('data\\b9.png')
+        b9 = pygame.transform.scale(b9, (60, 60))
+        b10 = pygame.image.load('data\\b10.png')
+        b10 = pygame.transform.scale(b10, (60, 60))
+        r1 = pygame.image.load('data\\r1.png')
+        r1 = pygame.transform.scale(r1, (60, 60))
+        r2 = pygame.image.load('data\\r2.png')
+        r2 = pygame.transform.scale(r2, (60, 60))
+        r3 = pygame.image.load('data\\r3.png')
+        r3 = pygame.transform.scale(r3, (60, 60))
+        r4 = pygame.image.load('data\\r4.png')
+        r4 = pygame.transform.scale(r4, (60, 60))
+        r5 = pygame.image.load('data\\r5.png')
+        r5 = pygame.transform.scale(r5, (60, 60))
+        r6 = pygame.image.load('data\\r6.png')
+        r6 = pygame.transform.scale(r6, (60, 60))
+        r7 = pygame.image.load('data\\r7.png')
+        r7 = pygame.transform.scale(r7, (60, 60))
+        r8 = pygame.image.load('data\\r8.png')
+        r8 = pygame.transform.scale(r8, (60, 60))
+        r9 = pygame.image.load('data\\r9.png')
+        r9 = pygame.transform.scale(r9, (60, 60))
+        r10 = pygame.image.load('data\\r10.png')
+        r10 = pygame.transform.scale(r10, (60, 60))
+        l1 = pygame.image.load('data\\l1.png')
+        l1 = pygame.transform.scale(l1, (60, 60))
+        l2 = pygame.image.load('data\\l2.png')
+        l2 = pygame.transform.scale(l2, (60, 60))
+        l3 = pygame.image.load('data\\l3.png')
+        l3 = pygame.transform.scale(l3, (60, 60))
+        l4 = pygame.image.load('data\\l4.png')
+        l4 = pygame.transform.scale(l4, (60, 60))
+        l5 = pygame.image.load('data\\l5.png')
+        l5 = pygame.transform.scale(l5, (60, 60))
+        l6 = pygame.image.load('data\\l6.png')
+        l6 = pygame.transform.scale(l6, (60, 60))
+        l7 = pygame.image.load('data\\l7.png')
+        l7 = pygame.transform.scale(l7, (60, 60))
+        l8 = pygame.image.load('data\\l8.png')
+        l8 = pygame.transform.scale(l8, (60, 60))
+        l9 = pygame.image.load('data\\l9.png')
+        l9 = pygame.transform.scale(l9, (60, 60))
+        l10 = pygame.image.load('data\\l10.png')
+        l10 = pygame.transform.scale(l10, (60, 60))
+
+
+
         a = pygame.image.load('data\\zeldaleft-Photoroom.png')
         a = pygame.transform.scale(a, (60, 60))
-        self.animations = {'up': [a], 'down': [p], 'left': [a], 'right': [a],
-                           'up_idle': [a], 'down_idle': [p], 'left_idle': [a], 'right_idle': [a],
-                           'right_attack': [a], 'left_attack': [a], 'up_attack': [a], 'down_attack': [a]}
+        self.animations = {'up': [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10], 'down': [p, p1, p2, p3, p4, p5, p6, p7, p8, p9], 'left': [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10], 'right': [r1, r2, r3, r4, r5, r6, r7, r8, r9, r10],
+                           'up_idle': [b1], 'down_idle': [p], 'left_idle': [l1], 'right_idle': [r1]}
 
     def keyboard(self):
         keys = pygame.key.get_pressed()
@@ -54,27 +134,13 @@ class Player(pygame.sprite.Sprite):
             self.status = 'left'
         else:
             self.movement.x = 0
-        #attack
-        if keys[pygame.K_SPACE] and not self.attacking:
-            self.attacking = True
-            self.attack_time = pygame.time.get_ticks()
-            print('attack')
+
 
     def get_status(self):
         if self.movement.x == 0 and self.movement.y == 0:
-            if not 'idle' in self.status and not 'attack' in self.status:
+            if not 'idle' in self.status:
                 self.status = self.status + '_idle'
-        if self.attacking:
-            self.movement.x = 0
-            self.movement.y = 0
-            if not 'attack' in self.status:
-                if 'idle' in self.status:
-                    self.status = self.status.replace('_idle', '_attack')
-                else:
-                    self.status = self.status + '_attack'
-        else:
-            if 'attack' in self.status:
-                self.status = self.status.replace('_attack', '')
+
 
 
     def go(self, v):
@@ -113,11 +179,6 @@ class Player(pygame.sprite.Sprite):
                 self.coin += 1
                 star.kill()
 
-    def cooldowns(self):
-        current_time = pygame.time.get_ticks()
-        if self.attacking:
-            if current_time - self.attack_time >= self.attack_cooldown:
-                self.attacking = False
 
     def animate(self):
         animation = self.animations[self.status]
@@ -127,9 +188,9 @@ class Player(pygame.sprite.Sprite):
         self.image = animation[int(self.frame_index)]
         self.rect = self.image.get_rect(center = self.hitbox.center)
 
+
     def update(self):
         self.keyboard()
-        self.cooldowns()
         self.animate()
         self.get_status()
         self.go(self.v)

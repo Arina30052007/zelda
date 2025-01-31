@@ -18,6 +18,7 @@ class Game2:
                     pygame.quit()
                     sys.exit()
 
+
             self.screen.fill('#1E5945')
             self.level2.run()
             pygame.display.update()
