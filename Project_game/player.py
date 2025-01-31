@@ -23,11 +23,18 @@ class Player(pygame.sprite.Sprite):
         self.coin = 0
         self.import_player_assets()
         self.status = 'down'
+        self.frame_index = 0
+        self.animation_speed = 0.15
 
     def import_player_assets(self):
         character_path = '/data/player1,1_processed.png'
-        self.animations = {'up': [], 'down': [], 'left': [], 'right': [],
-                           'right_attack': [], 'left_attack': [], 'up_attack': [], 'down_attack': []}
+        p = pygame.image.load('data\\player1,1_processed.png')
+        p = pygame.transform.scale(p, (60, 60))
+        a = pygame.image.load('data\\zeldaleft-Photoroom.png')
+        a = pygame.transform.scale(a, (60, 60))
+        self.animations = {'up': [a], 'down': [p], 'left': [a], 'right': [a],
+                           'up_idle': [a], 'down_idle': [p], 'left_idle': [a], 'right_idle': [a],
+                           'right_attack': [a], 'left_attack': [a], 'up_attack': [a], 'down_attack': [a]}
 
     def keyboard(self):
         keys = pygame.key.get_pressed()
@@ -112,9 +119,18 @@ class Player(pygame.sprite.Sprite):
             if current_time - self.attack_time >= self.attack_cooldown:
                 self.attacking = False
 
+    def animate(self):
+        animation = self.animations[self.status]
+        self.frame_index += self.animation_speed
+        if self.frame_index >= len(animation):
+            self.frame_index = 0
+        self.image = animation[int(self.frame_index)]
+        self.rect = self.image.get_rect(center = self.hitbox.center)
+
     def update(self):
         self.keyboard()
         self.cooldowns()
+        self.animate()
         self.get_status()
         self.go(self.v)
         self.col()
