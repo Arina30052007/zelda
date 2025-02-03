@@ -1,7 +1,7 @@
 import pygame
 
 class Player2(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, obstacle_sprites, z):
+    def __init__(self, pos, groups, obstacle_sprites, m):
         super().__init__(groups)
         self.image = pygame.image.load('data\\player1,1_processed.png')
         self.image = pygame.transform.scale(self.image, (60, 60))
@@ -15,7 +15,7 @@ class Player2(pygame.sprite.Sprite):
         self.attack_cooldown = 400
         self.attack_time = None
         self.obstacle_sprites = obstacle_sprites
-        self.z = z
+        self.m = m
         self.coin = 0
         self.import_player_assets()
         self.status = 'down'
@@ -107,11 +107,17 @@ class Player2(pygame.sprite.Sprite):
 
 
 
-        a = pygame.image.load('data\\attackl.png')
-        a = pygame.transform.scale(a, (60, 60))
+        a_l = pygame.image.load('data\\attackleft-Photoroom.png')
+        a_l = pygame.transform.scale(a_l, (80, 60))
+        a_d = pygame.image.load('data\\attackdown-Photoroom.png')
+        a_d = pygame.transform.scale(a_d, (80, 80))
+        a_r = pygame.image.load('data\\attackright-Photoroom.png')
+        a_r = pygame.transform.scale(a_r, (80, 60))
+        a_u = pygame.image.load('data\\attackup-Photoroom.png')
+        a_u = pygame.transform.scale(a_u, (60, 60))
         self.animations = {'up': [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10], 'down': [p, p1, p2, p3, p4, p5, p6, p7, p8, p9], 'left': [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10], 'right': [r1, r2, r3, r4, r5, r6, r7, r8, r9, r10],
                            'up_idle': [b1], 'down_idle': [p], 'left_idle': [l1], 'right_idle': [r1],
-                           'right_attack': [a], 'left_attack': [a], 'up_attack': [a], 'down_attack': [a]}
+                           'right_attack': [a_r], 'left_attack': [a_l], 'up_attack': [a_u], 'down_attack': [a_d]}
 
 
 
@@ -183,8 +189,8 @@ class Player2(pygame.sprite.Sprite):
                         self.hitbox.top = sprite.hitbox.bottom
 
     def col(self):
-        for star in self.z:
-            if star.hitbox.colliderect(self.hitbox):
+        for star in self.m:
+            if star.hitbox.colliderect(self.hitbox) and self.attacking:
                 self.coin += 1
                 star.kill()
 

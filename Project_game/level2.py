@@ -3,7 +3,8 @@ import pygame
 from Project_game.settings import WORLD_MAP2
 from player2 import Player2
 from debug import debug
-from others import Stars2, Rock2
+from others import Rock2
+from enemy import Enemy
 
 class Setup2:
     def __init__(self):
@@ -11,7 +12,7 @@ class Setup2:
         self.display_surface = pygame.display.get_surface()
         self.visible_sprites =  CameraGroup()
         self.obstacles_sprites = pygame.sprite.Group()
-        self.z = pygame.sprite.Group()
+        self.m = pygame.sprite.Group()
         self.place()
 
     def place(self):
@@ -22,9 +23,9 @@ class Setup2:
                 if column == 'x':
                     Rock2((x, y), [self.visible_sprites, self.obstacles_sprites])
                 if column == 'p':
-                    self.player = Player2((x, y), [self.visible_sprites], self.obstacles_sprites, self.z)
-                if column == 'z':
-                    self.star = Stars2((x, y), [self.z, self.visible_sprites], self.z)
+                    self.player = Player2((x, y), [self.visible_sprites], self.obstacles_sprites, self.m)
+                if column == 'm':
+                    self.enemy = Enemy((x, y), [self.m, self.visible_sprites], self.m, self.obstacles_sprites)
 
 
     def run(self):
