@@ -1,7 +1,8 @@
 import pygame
+from main3 import Game3
 
 class Player2(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, obstacle_sprites, m):
+    def __init__(self, pos, groups, obstacle_sprites, m, d):
         super().__init__(groups)
         self.image = pygame.image.load('data\\player1,1_processed.png')
         self.image = pygame.transform.scale(self.image, (60, 60))
@@ -9,6 +10,7 @@ class Player2(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(0, -26)
         self.pos = pos
+        self.d = d
         self.movement = pygame.math.Vector2()
         self.v = 5
         self.attacking = False
@@ -21,6 +23,8 @@ class Player2(pygame.sprite.Sprite):
         self.status = 'down'
         self.frame_index = 0
         self.animation_speed = 0.15
+        self.mcount = 0
+        self.s = pygame.mixer.music.load("data\\fight.mp3")
 
     def import_player_assets(self):
         character_path = '/data/player1,1_processed.png'
@@ -189,10 +193,14 @@ class Player2(pygame.sprite.Sprite):
                         self.hitbox.top = sprite.hitbox.bottom
 
     def col(self):
-        for star in self.m:
-            if star.hitbox.colliderect(self.hitbox) and self.attacking:
-                self.coin += 1
-                star.kill()
+        for monster in self.m:
+            if monster.hitbox.colliderect(self.hitbox) and self.attacking:
+                self.mcount += 1
+                monster.kill()
+                pygame.mixer.music.play(0, 18)
+        for princess in self.d:
+            if princess.hitbox.colliderect(self.hitbox):
+                Game3(self.mcount)
 
     def cooldowns(self):
         current_time = pygame.time.get_ticks()

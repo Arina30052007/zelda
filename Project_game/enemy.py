@@ -1,4 +1,7 @@
 import pygame
+from pygame import USEREVENT
+
+from player2 import Player2
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, pos, groups, m, obstacle_sprites):
@@ -9,25 +12,25 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(0, -26)
         self.pos = pos
-        self.movement = pygame.math.Vector2()
-        self.v = 5
+        self.v = 3
         self.m = m
         self.coin = 0
         self.obstacle_sprites = obstacle_sprites
+        self.direction = 0
+        self.movement = pygame.math.Vector2()
 
-    def go(self, v):
-        for e in self.m:
-            self.movement.x += 1
-            self.movement.y += 1
-            if self.movement.magnitude() != 0:
-                self.movement = self.movement.normalize()
+    def go(self):
+        self.movement.x = 0.00000000000001
+        if self.movement.magnitude() != 0:
+            self.movement = self.movement.normalize()
+        if self.rect.right >= 1050:
+            self.direction = -1
+        elif self.rect.left <= 0:
+            self.direction = 1
+        self.hitbox.x += self.direction * self.movement.x * self.v
 
 
-            self.hitbox.x += self.movement.x
-            self.collision('horizontal')
-            self.hitbox.y += self.movement.y
-            self.collision('vertical')
-            self.rect.center = self.hitbox.center
+        self.rect.center = self.hitbox.center
 
     def collision(self, movement):
         if movement == 'horizontal':
@@ -45,6 +48,9 @@ class Enemy(pygame.sprite.Sprite):
                     if self.movement.y < 0:
                         self.hitbox.top = sprite.hitbox.bottom
 
+
+
+
     def update(self):
-        self.go(self.v)
+        self.go()
 

@@ -12,15 +12,12 @@ class Rock2(pygame.sprite.Sprite):
         self.hitbox = self.rect.inflate(0, -10)
 
 
-class Stars2(pygame.sprite.Sprite):
-
-    image_str = 'data\\star-Photoroom.png'
-    image_1 = "data\\1.png"
-    def __init__(self, pos, groups, z):
+class Princess(pygame.sprite.Sprite):
+    def __init__(self, pos, groups, d):
         super().__init__(groups)
-        self.z = z
-        self.image = pygame.image.load(Stars2.image_str)
-        self.image = pygame.transform.scale(self.image, (30, 30))
+        self.d = d
+        self.image = pygame.image.load('data\\princess-Photoroom.png')
+        self.image = pygame.transform.scale(self.image, (60, 60))
         self.image.convert_alpha()
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -10)

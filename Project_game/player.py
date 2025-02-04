@@ -25,6 +25,7 @@ class Player(pygame.sprite.Sprite):
         self.status = 'down'
         self.frame_index = 0
         self.animation_speed = 0.15
+        self.s = pygame.mixer.music.load("data\\shine.mp3")
 
     def import_player_assets(self):
         character_path = '/data/player1,1_processed.png'
@@ -172,12 +173,13 @@ class Player(pygame.sprite.Sprite):
 
     def col(self):
         for sprite in self.m:
-            if sprite.hitbox.colliderect(self.hitbox):
+            if sprite.hitbox.colliderect(self.hitbox) and self.coin == 7:
                 Game2()
         for star in self.z:
             if star.hitbox.colliderect(self.hitbox):
                 self.coin += 1
                 star.kill()
+                pygame.mixer.music.play()
 
 
     def animate(self):
