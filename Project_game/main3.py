@@ -17,17 +17,19 @@ class Game3:
         sys.exit()
 
     def last_screen(self):
-        intro_text = ["ВЫ ПРОШЛИ ИГРУ", "",
-                      "РЕЗУЛЬТАТ:",
-                      f"{self.mcount}/7 поверженных врагов"]
+
+        intro_text = ["                                           ВЫ ПРОШЛИ ИГРУ", "",
+                      "",
+                      "                                                 РЕЗУЛЬТАТ:",
+                      f"                                   {self.mcount}/7 поверженных врагов"]
 
         self.image = pygame.image.load('data\\end.jpg')
         self.image = pygame.transform.scale(self.image, (1000, 600))
         self.screen.blit(self.image, (0, 0))
-        font = pygame.font.Font(None, 30)
+        font = pygame.font.Font(None, 40)
         text_coord = 50
         for line in intro_text:
-            string_rendered = font.render(line, 1, pygame.Color('black'))
+            string_rendered = font.render(line, 1, pygame.Color('red'))
             intro_rect = string_rendered.get_rect()
             text_coord += 10
             intro_rect.top = text_coord

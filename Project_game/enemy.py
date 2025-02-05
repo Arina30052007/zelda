@@ -12,7 +12,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(0, -26)
         self.pos = pos
-        self.v = 3
+        self.v = 7
         self.m = m
         self.coin = 0
         self.obstacle_sprites = obstacle_sprites
